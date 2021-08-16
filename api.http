@@ -1,0 +1,37 @@
+# -*- restclient -*-
+# Emacs Commands:
+# - C-c C-v - execute and keep focus
+# - C-c C-g - start helm session
+# - C-c C-n|p - jump to next | previous query
+#
+# SEE:
+# - https://github.com/pashky/restclient.el
+# - https://jakemccrary.com/blog/2014/07/04/using-emacs-to-explore-an-http-api/
+##############################################################################
+# API Documentation:
+# - https://support.1password.com/connect-api-reference/
+
+:service = http://localhost:8080/v1
+# FIXME: NOT WORKING
+#:token = (getenv "DEMO_ACCESS_TOKEN")
+:token = <DEMO_ACCESS_TOKEN>
+:vault = iraokmv7alkt7wppkl3dmnjuyi
+# Item title: DemoPassword
+:item = mf7t7aoib36tkcwkteobulxnva
+
+:header = <<
+Authorization: Bearer :token
+Content-Type: application/json
+#
+
+# List vaults
+GET :service/vaults
+:header
+
+# List vault content
+GET :service/vaults/:vault/items
+:header
+
+# Get demo password
+GET :service/vaults/:vault/items/:item
+:header
